@@ -157,7 +157,7 @@ module LinkedIn
       recipients.recipients = recipient_paths.map do |profile_path|
         recipient             = LinkedIn::Recipient.new
         recipient.person      = LinkedIn::Person.new
-        recipient.person.path = "/people/#{profile_path}"
+        recipient.person.path = "\"/people/#{profile_path}\""
         recipient
       end
 
