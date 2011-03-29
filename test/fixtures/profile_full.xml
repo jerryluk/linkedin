@@ -3835,6 +3835,16 @@ Working closely with Microsoft consultants onstaff and in Redmond in order to in
       </end-date>
     </education>
   </educations>
+  <twitter-accounts total="2">
+    <twitter-account>
+      <provider-account-id>00000</provider-account-id>
+      <provider-account-name>twitter0</provider-account-name>
+    </twitter-account>
+    <twitter-account>
+      <provider-account-id>00001</provider-account-id>
+      <provider-account-name>twitter1</provider-account-name>
+    </twitter-account>
+  </twitter-accounts>
   <member-url-resources total="2">
     <member-url>
       <url>http://orrka.com</url>
