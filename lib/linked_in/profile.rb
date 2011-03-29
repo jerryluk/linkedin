@@ -51,7 +51,7 @@ module LinkedIn
     end
     
     def twitter_accounts
-      @education ||= TwitterAccount.new(@doc.xpath('//twitter-accounts')).twitter_accounts
+      @twitter_accounts ||= TwitterAccount.new(@doc.xpath('//twitter-accounts')).twitter_accounts
     end
     
 
