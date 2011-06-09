@@ -165,6 +165,16 @@ class ClientTest < Test::Unit::TestCase
       stats.updates.size.should == 4
       stats.updates.last.profile.headline.should == "Creative Director for Intridea"
     end
+    
+    should "retrieve twitter-accounts from a profile" do
+      stub_get("/v1/people/~", "profile_full.xml")
+      p = @linkedin.profile
+      p.twitter_accounts.size.should == 2
+      p.twitter_accounts[0].provider_account_id.should == "00000"
+      p.twitter_accounts[0].provider_account_name.should == "twitter0"
+      p.twitter_accounts[1].provider_account_id.should == "00001"
+      p.twitter_accounts[1].provider_account_name.should == "twitter1"
+    end
 
     should "send a message to recipients" do
       stub_post("/v1/people/~/mailbox", "mailbox_items.xml")

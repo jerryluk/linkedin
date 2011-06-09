@@ -49,6 +49,11 @@ module LinkedIn
     def groups
       @groups ||= Group.new(@doc.xpath('//member-groups')).groups
     end
+    
+    def twitter_accounts
+      @twitter_accounts ||= TwitterAccount.new(@doc.xpath('//twitter-accounts')).twitter_accounts
+    end
+    
 
   end
 end
