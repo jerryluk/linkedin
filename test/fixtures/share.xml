@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<share>
+  <comment>Testing out the LinkedIn API</comment>
+  <content>
+     <title>LinkedIn</title>
+     <description>Size Matters</description>
+     <submitted-url>http://www.linkedin.com</submitted-url>
+     <submitted-image-url>http://www.linkedin.com/image.gif</submitted-image-url>
+  </content>
+  <visibility>
+     <code>anyone</code>
+  </visibility>
+</share>

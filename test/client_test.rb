@@ -174,6 +174,16 @@ class ClientTest < Test::Unit::TestCase
 
       @linkedin.send_message(subject, body, recipients).should == "200"
     end
+    
+    should "posting a share" do
+      stub_post("/v1/people/~/shares?twitter-post=true", "share.xml")
+      @linkedin.post_share(
+        :comment => "Testing out the LinkedIn API", 
+        :url => "http://www.linkedin.com",
+        :url_image => "http://www.linkedin.com/image.gif",
+        :title => "LinkedIn",
+        :description => "Size Matters")
+    end
 
   end
 end

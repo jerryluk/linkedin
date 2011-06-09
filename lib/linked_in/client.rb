@@ -145,6 +145,11 @@ module LinkedIn
       path = "/people/~/current-status"
       delete(path).code
     end
+    
+    def post_share(options)
+      path = "/people/~/shares?twitter-post=true"
+      post(path,share_to_xml(options),{'Content-Type' => 'application/xml'})
+    end
 
     def send_message(subject, body, recipient_paths)
       path = "/people/~/mailbox"
@@ -261,6 +266,23 @@ module LinkedIn
       def message_to_xml(message)
         %Q{<?xml version="1.0" encoding="UTF-8"?>
         #{message.to_xml}}
+      end
+      
+      def share_to_xml(options)
+        options = { :visibility => "anyone" }.merge(options)
+        %Q{<?xml version="1.0" encoding="UTF-8"?>
+        <share>
+          <comment>#{options[:comment]}</comment>
+          <content>
+             <title>#{options[:title]}</title>
+             <description>#{options[:description]}</description>
+             <submitted-url>#{options[:url]}</submitted-url>
+             <submitted-image-url>#{options[:image_url]}</submitted-image-url>
+          </content>
+          <visibility>
+             <code>#{options[:visibility]}</code>
+          </visibility>
+        </share>}
       end
     
   end
