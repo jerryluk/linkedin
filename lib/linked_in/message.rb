@@ -20,7 +20,7 @@ module LinkedIn
     attr_accessor :auth_token
     
     def to_xml
-      "<mailbox-item>
+      xml = "<mailbox-item>
         <recipients>
           #{recipients.to_xml}
         </recipients>
@@ -28,14 +28,17 @@ module LinkedIn
         <body>#{body}</body>
         <item-content>
           <invitation-request>
-            <connect-type>friend</connect-type>
-            <authorization>
-              <name>#{auth_token.split(/:/)[0]}</name>
-              <value>#{auth_token.split(/:/)[1]}</value>
-            </authorization>
+            <connect-type>friend</connect-type>"
+      xml << "
+              <authorization>
+                <name>#{auth_token.split(/:/)[0]}</name>
+                <value>#{auth_token.split(/:/)[1]}</value>
+              </authorization>" if auth_token.present?
+      xml << "
           </invitation-request>
         </item-content>
       </mailbox-item>"
+      xml
     end
   end
   

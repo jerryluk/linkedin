@@ -170,19 +170,21 @@ module LinkedIn
       post(path, message_to_xml(message), { "Content-Type" => "text/xml" }).code
     end
     
-    def send_invitation(subject, body, recipient_path, auth_token)
+    def send_invitation(subject, body, recipient_path, options)
       path = "/people/~/mailbox"
 
-      message               = LinkedIn::InvitationMessage.new
-      message.subject       = subject
-      message.body          = body
-      message.auth_token    = auth_token
-      recipient             = LinkedIn::Recipient.new
-      recipient.person      = LinkedIn::Person.new
-      recipient.person.path = "\"/people/#{recipient_path}\""
-      recipients            = LinkedIn::Recipients.new
-      recipients.recipients = [recipient]
-      message.recipients    = recipients
+      message                     = LinkedIn::InvitationMessage.new
+      message.subject             = subject
+      message.body                = body
+      message.auth_token          = options[:auth_token] if options[:auth_token]
+      recipient                   = LinkedIn::Recipient.new
+      recipient.person            = LinkedIn::Person.new
+      recipient.person.path       = "\"/people/#{recipient_path}\""
+      recipient.person.first_name = options[:first_name] if options[:first_name]
+      recipient.person.last_name  = options[:last_name] if options[:last_name]
+      recipients                  = LinkedIn::Recipients.new
+      recipients.recipients       = [recipient]
+      message.recipients          = recipients
       
       post(path, message_to_xml(message), { "Content-Type" => "text/xml" }).code
     end
