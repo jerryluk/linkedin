@@ -170,6 +170,23 @@ module LinkedIn
       post(path, message_to_xml(message), { "Content-Type" => "text/xml" }).code
     end
     
+    def send_invitation(subject, body, recipient_path, auth_token)
+      path = "/people/~/mailbox"
+
+      message               = LinkedIn::InvitationMessage.new
+      message.subject       = subject
+      message.body          = body
+      message.auth_token    = auth_token
+      recipient             = LinkedIn::Recipient.new
+      recipient.person      = LinkedIn::Person.new
+      recipient.person.path = "\"/people/#{recipient_path}\""
+      recipients            = LinkedIn::Recipients.new
+      recipients.recipients = [recipient]
+      message.recipients    = recipients
+      
+      post(path, message_to_xml(message), { "Content-Type" => "text/xml" }).code
+    end
+    
     def network_statuses(options={})
       options[:type] = 'STAT'
       network_updates(options)

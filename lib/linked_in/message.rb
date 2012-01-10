@@ -15,6 +15,30 @@ module LinkedIn
     
   end
   
+  class InvitationMessage < Message
+    
+    attr_accessor :auth_token
+    
+    def to_xml
+      "<mailbox-item>
+        <recipients>
+          #{recipients.to_xml}
+        </recipients>
+        <subject>#{subject}</subject>
+        <body>#{body}</body>
+        <item-content>
+          <invitation-request>
+            <connect-type>friend</connect-type>
+            <authorization>
+              <name>#{auth_token.split(/:/)[0]}</name>
+              <value>#{auth_token.split(/:/)[1]}</value>
+            </authorization>
+          </invitation-request>
+        </item-content>
+      </mailbox-item>"
+    end
+  end
+  
 end
 
 # <mailbox-item>
